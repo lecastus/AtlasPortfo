@@ -59,5 +59,10 @@ def contato(page_name='.'):
         return render_template(f'{page_name}.html')
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file('assets/favicon.ico')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001, debug=True)
