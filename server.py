@@ -53,7 +53,8 @@ def contact(page_name='.'):
     page_name = page_name.replace('.html', '')
     print(page_name)
     if '.ico' in page_name:
-        render_template('./static/assets/'+page_name)
+        return app.send_static_file('assets/' + page_name)
+
     else:
         return render_template(f'{page_name}.html')
 
