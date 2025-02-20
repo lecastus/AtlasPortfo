@@ -49,7 +49,7 @@ def my_home():
 
 
 @app.route('/<string:page_name>')
-def contact(page_name='.'):
+def contato(page_name='.'):
     page_name = page_name.replace('.html', '')
     print(page_name)
     if '.ico' in page_name:
