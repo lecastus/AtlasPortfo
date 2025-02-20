@@ -48,6 +48,11 @@ def my_home():
     return render_template('index.html')
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file('assets/favicon.ico')
+
+
 @app.route('/<string:page_name>')
 def contato(page_name='.'):
     page_name = page_name.replace('.html', '')
@@ -55,11 +60,6 @@ def contato(page_name='.'):
         return app.send_static_file(f'assets/{page_name}')
     else:
         return render_template(f'{page_name}.html')
-
-
-@app.route('/favicon.ico')
-def favicon():
-    return app.send_static_file('assets/favicon.ico')
 
 
 if __name__ == '__main__':
