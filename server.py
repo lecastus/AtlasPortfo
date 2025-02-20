@@ -51,10 +51,8 @@ def my_home():
 @app.route('/<string:page_name>')
 def contato(page_name='.'):
     page_name = page_name.replace('.html', '')
-    print(page_name)
-    if '.ico' in page_name:
-        return app.send_static_file('assets/' + page_name)
-
+    if page_name.endswith('.ico'):
+        return app.send_static_file(f'assets/{page_name}')
     else:
         return render_template(f'{page_name}.html')
 
