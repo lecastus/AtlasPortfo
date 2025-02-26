@@ -62,5 +62,10 @@ def contato(page_name='.'):
         return render_template(f'{page_name}.html')
 
 
+@app.route('/assets/projects_data.csv')
+def get_csv():
+    return app.send_static_file('assets/projects_data.csv')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001, debug=True)

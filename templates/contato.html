@@ -30,11 +30,17 @@
           
           <div class="row">
             <div class="col-md-10 col-md-offset-1">
-               <form action="submit_form" method="post" class="reveal-content">
+               <form action="submit_form" method="post" class="reveal-content" onsubmit="return validateEmail()">
                   <div class="row">
                     <div class="col-md-7">
                       <div class="form-group">
-                        <input name="email" type="email" class="form-control" id="email" placeholder="Email">
+                        <input name="email" 
+                               type="email" 
+                               class="form-control" 
+                               id="email" 
+                               placeholder="Email" 
+                               required>
+                        <div id="emailError" class="error-message"></div>
                       </div>
                       <div class="form-group">
                         <input name="subject" type="text" class="form-control" id="subject" placeholder="Assunto">
@@ -99,6 +105,22 @@
   </div>
 </footer>
 
+<style>
+    /* Estilo para a mensagem de erro */
+    .error-message {
+        color: #ff0000;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    /* Estilo para o campo com erro */
+    .form-control.error {
+        border-color: #ff0000;
+    }
+</style>
+
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
      navActivePage();
@@ -115,6 +137,24 @@
           document.getElementById(elementId).innerHTML = data;
         })
         .catch(err => console.error(err));
+    }
+
+    // Validação do campo de email usando JavaScript
+    function validateEmail() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailPattern.test(emailInput.value)) {
+            emailError.textContent = 'Por favor, insira um e-mail válido (ex: exemplo@dominio.com)';
+            emailError.style.display = 'block';
+            emailInput.classList.add('error');
+            return false;
+        } else {
+            emailError.style.display = 'none';
+            emailInput.classList.remove('error');
+            return true;
+        }
     }
 </script>
 
